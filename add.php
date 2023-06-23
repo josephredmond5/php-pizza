@@ -24,15 +24,16 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    // check title
-    if (empty($_POST['title'])) {
-        $errors['title'] = 'A title is required <br />';
-    } else {
-        $title = $_POST['title'];
-        if (!preg_match('/⌃[a-zA-Z\s]+$/', $title)) {
-            $errors['title'] = 'Title must be letters and spaces only';
-        }
+// check title
+if (empty($_POST['title'])) {
+    $errors['title'] = 'A title is required <br />';
+} else {
+    $title = $_POST['title'];
+    if (!preg_match('/^[a-zA-Z\s]+$/', $title)) {
+        $errors['title'] = 'Title must be letters and spaces only';
     }
+}
+
 
     // check ingredients
     if (empty($_POST['ingredients'])) {
@@ -61,13 +62,13 @@ if (isset($_POST['submit'])) {
 
 <form class="white" action="add.php" method="POST">
     <label>your email</label>
-    <input type="text" name="email" value="<?php echo $email ?>">
+    <input type="text" name="email" value="<?php echo htmlspecialchars($email) ?>">
     <div class="red-text"><?php echo $errors['email']?></div>
     <label>pizza title</label>
-    <input type="text" name="title" value="<?php echo $title ?>">
+    <input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>">
     <div class="red-text"><?php echo $errors['title']?></div>
     <label>Ingridients (comma seperated)</label>
-    <input type="text" name="ingredients" value="<?php echo $ingredients ?>">
+    <input type="text" name="ingredients" value="<?php echo htmlspecialchars($ingredients) ?>">
     <div class="red-text"><?php echo $errors['ingredients']?></div>
     <div class="center">
         <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
