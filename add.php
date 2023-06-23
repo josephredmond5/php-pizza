@@ -34,10 +34,10 @@ if (isset($_POST['submit'])) {
     }
 
     // check ingredients
-    if (empty($_POST['ingridients'])) {
+    if (empty($_POST['ingredients'])) {
         $errors['ingridients'] = 'At least 1 ingredient is required <br />';
     } else {
-        $ingredients = $_POST['ingridients'];
+        $ingredients = $_POST['ingredients'];
         if (!preg_match('/^[a-zA-Z\s]+(,\s*[a-zA-Z\s]*)*$/', $ingredients)) {
             $errors['ingridients'] = 'Ingredients must be a comma separated list';
         }
