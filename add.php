@@ -7,40 +7,42 @@
 //    echo $_GET['Ingridients']; 
 // } 
 
-if(isset($_POST['submit'])){ // this is to stop hackers destryoing this
-    // echo htmlspecialchars($_POST['email']);
-    // echo htmlspecialchars($_POST['title']);
-    // echo htmlspecialchars($_POST['Ingridients']); 
 
-        // check email
-    if(empty($_POST['email'])){ // this is checking if there has been any info put in the input fields
-        echo 'an email is required <br />';
+$errors = array('email' => '', 'title' => '', 'ingridients' => '');
+
+if (isset($_POST['submit'])) {
+    // ...
+
+    // check email
+    if (empty($_POST['email'])) {
+        $errors['email'] = 'An email is required <br />';
     } else {
         $email = $_POST['email'];
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){ // this filter is built into PHP 
-           ECHO 'email must be a valid email address'; // this whole IF statement checks if the email is valid
-        }
-    }
-        // check title
-    if(empty($_POST['title'])){
-        echo 'a title is required <br />';
-    } else {
-        $title = $_POST['title'];
-        if(!preg_match('/⌃[a-zA-Z\s]+$/', $title)){
-            echo 'Title must be letters and spaces only';
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'Email must be a valid email address';
         }
     }
 
-        // check ingridients
-        if (empty($_POST['Ingridients'])) { // check if the ingridients are comma seperated
-            echo 'At least 1 ingredient is required <br />';
-        } else {
-            $Ingridients = $_POST['Ingridients'];
-            if (!preg_match('/⌃[a-zA-Z\s]+(,\s*[a-zA-Z\s]*)*$/', $Ingridients)) {
-                echo 'Ingredients must be a comma seperated list';
-            }
+    // check title
+    if (empty($_POST['title'])) {
+        $errors['title'] = 'A title is required <br />';
+    } else {
+        $title = $_POST['title'];
+        if (!preg_match('/⌃[a-zA-Z\s]+$/', $title)) {
+            $errors['title'] = 'Title must be letters and spaces only';
         }
-    }        
+    }
+
+    // check ingredients
+    if (empty($_POST['ingridients'])) {
+        $errors['ingridients'] = 'At least 1 ingredient is required <br />';
+    } else {
+        $ingredients = $_POST['ingridients'];
+        if (!preg_match('/^[a-zA-Z\s]+(,\s*[a-zA-Z\s]*)*$/', $ingredients)) {
+            $errors['ingridients'] = 'Ingredients must be a comma separated list';
+        }
+    }
+}    
 
     // end of POST check
 
@@ -59,10 +61,13 @@ if(isset($_POST['submit'])){ // this is to stop hackers destryoing this
 <form class="white" action="add.php" method="POST">
     <label>your email</label>
     <input type="text" name="email">
+    <div class="red-text"><?php echo $errors['email']?></div>
     <label>pizza title</label>
     <input type="text" name="title">
+    <div class="red-text"><?php echo $errors['title']?></div>
     <label>Ingridients (comma seperated)</label>
     <input type="text" name="ingridients">
+    <div class="red-text"><?php echo $errors['ingridients']?></div>
     <div class="center">
         <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
     </div>
