@@ -23,7 +23,9 @@ mysqli_free_result($result); // this is freeing the resulting from memory
 // close connection to the database
 mysqli_close($conn);
 
-// explode(',', $pizza[0]['ingredients']);
+explode(',', $pizza[0]['ingredients']);
+
+// explode function is to plit a string nto an array based on a specified seperator
 
 
 
@@ -43,17 +45,17 @@ mysqli_close($conn);
 <div class="container">
     <div class="row">
 
-    <?php foreach($pizza as $pizzas){ ?>
+    <?php foreach($pizza as $pizzas): ?>
 
     <div class="col s6 md3"> 
         <div class="card z-depth-0">
             <div class="card-content">
                 <h6><?php echo htmlspecialchars($pizzas['title']); ?></h6>
                 <ul>
-                    <?php foreach(explode(',', $pizzas['ingredients']) as $ing) { ?>
+                    <?php foreach(explode(',', $pizzas['ingredients']) as $ing): ?>
 
                         <li><?php echo htmlspecialchars($ing) ?></li>    
-                    <?php }?>
+                    <?php endforeach; ?>
                 </ul>
             </div>
             <div class="card-action right-align">
@@ -62,8 +64,16 @@ mysqli_close($conn);
         </div>
     </div>
     
-        <?php }?>
+        <?php endforeach; ?>
     
+           <?php if(count($pizza) >= 3):  ?> // colon being used instead of curly braces
+            <p>there are 3 or more pizzas</p>
+            <?php  else: ?>      
+                <p>there are less than 3 pizzas</p>    
+            <?php  endif; ?>     
+            
+                
+
     </div>
 </div>
 
