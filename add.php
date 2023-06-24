@@ -47,10 +47,10 @@ if (empty($_POST['title'])) {
 }    
 
     if(array_filter($errors)){ // this is to check if there are any errors in the array
-        // echo 'errors in the form';
+        echo 'errors in the form';
     }else {
-        // echo 'form is valid';
-        header('location: index.php'); // this redirects to the index or location specified
+        echo 'form is valid';
+        // header('location: index.php'); // this redirects to the index or location specified 
     }
 
     // end of POST check
