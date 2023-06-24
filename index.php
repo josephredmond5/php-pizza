@@ -23,7 +23,9 @@ mysqli_free_result($result); // this is freeing the resulting from memory
 // close connection to the database
 mysqli_close($conn);
 
-// print_r($pizza);
+// explode(',', $pizza[0]['ingredients']);
+
+
 
 
 
@@ -47,7 +49,12 @@ mysqli_close($conn);
         <div class="card z-depth-0">
             <div class="card-content">
                 <h6><?php echo htmlspecialchars($pizzas['title']); ?></h6>
-                <div><?php echo htmlspecialchars($pizzas['ingredients']); ?></div>
+                <ul>
+                    <?php foreach(explode(',', $pizzas['ingredients']) as $ing) { ?>
+
+                        <li><?php echo htmlspecialchars($ing) ?></li>    
+                    <?php }?>
+                </ul>
             </div>
             <div class="card-action right-align">
                 <a href="#" class="brand-text">more info</a>
