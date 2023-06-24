@@ -1,5 +1,7 @@
 <?php 
 
+include('config/db_connect.php');
+
 // mySQLi or PDO - php data object, my structured query language imporve
 // connect to database
 $conn = mysqli_connect('localhost', 'shaun', 'test1234', 'ninja_pizza');
@@ -27,8 +29,7 @@ explode(',', $pizza[0]['ingredients']);
 
 // explode function is to plit a string nto an array based on a specified seperator
 
-
-
+// colon being used instead of curly braces
 
 
 ?>
@@ -66,7 +67,7 @@ explode(',', $pizza[0]['ingredients']);
     
         <?php endforeach; ?>
     
-           <?php if(count($pizza) >= 3):  ?> // colon being used instead of curly braces
+           <?php if(count($pizza) >= 3):  ?> 
             <p>there are 3 or more pizzas</p>
             <?php  else: ?>      
                 <p>there are less than 3 pizzas</p>    
