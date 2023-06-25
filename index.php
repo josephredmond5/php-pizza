@@ -60,17 +60,17 @@ explode(',', $pizza[0]['ingredients']);
                 </ul>
             </div>
             <div class="card-action right-align">
-                <a href="#" class="brand-text">more info</a>
+                <a href="details.php" class="brand-text?=<?php echo $pizzas['id'] ?>">more info</a>
             </div>
         </div>
     </div>
     
         <?php endforeach; ?>
     
-           <?php if(count($pizza) >= 3):  ?> 
-            <p>there are 3 or more pizzas</p>
+           <?php if(count($pizza) >= 2):  ?> 
+            <p>there are 2 or more pizzas</p>
             <?php  else: ?>      
-                <p>there are less than 3 pizzas</p>    
+                <p>there are less than 2 pizzas</p>    
             <?php  endif; ?>     
             
                 
